@@ -34,6 +34,9 @@ def graph(features, output, theta, figure_name):
 		x.append(feature[0])
 		y.append(feature[1])
 	z = generateZValues(feature, theta)
+	
+	fig = plt.figure()
+	ax = fig.add_subplot(111, projection='3d')
 	plt.scatter(x, y, z, c='r', marker='o')
 
 	#Ensure that the next plot doesn't overwrite the first plot
@@ -55,9 +58,6 @@ if __name__ == '__main__':
 	total = np.asarray(data['Total'])
 	special_attack = np.asarray(data['Sp_Atk'])
 	catch_rate = np.asarray(data['Catch_Rate'])
-
-	fig = plt.figure()
-	ax = fig.add_subplot(111, projection='3d')
 
 	temp = np.asarray([[tot, spec_atk] for tot, spec_atk in zip(total, special_attack)]) # Gets our features
 	training_features, test_features = temp[:int(len(temp) * 0.7)], temp[int(len(temp) * 0.3):] # Splits our features in half between training and testing
